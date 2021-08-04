@@ -1,0 +1,18 @@
+def fibonacciByRecursionTree(num): 
+    if num<=1:
+        return num
+    return fibonacciByRecursionTree(num-1)+fibonacciByRecursionTree(num-2)
+    
+def fibonacciByDynamicProgramming(num):
+    array = [None]*(num+1)
+    array[0], array[1]= 0, 1
+    index = 2
+    while(index<=num):
+        array[index] = array[index-1] + array[index-2]
+        index = index+1
+    return array[num]
+
+def knapsack_zero_one():
+
+print("fibonacciByRecursionTree(6) : "+ str(fibonacciByRecursionTree(6)))
+print("fibonacciByDynamicProgramming(6) : "+ str(fibonacciByDynamicProgramming(6)))
