@@ -1,0 +1,29 @@
+import java.util.Scanner;
+public class Main
+{
+    // 0-1 Knapsack -> using Recursion -> Time Complexity = O(2 power n)
+    public static int ZeroOneKnapsackRecursion(int weight[], int profit[], int remainingWeight, int index){
+        if(remainingWeight==0 || index<0){
+            return 0;
+        }
+        
+        if(weight[index]>remainingWeight){
+            return ZeroOneKnapsackRecursion(weight, profit, remainingWeight, index-1);
+        }else{
+            int profit1 = ZeroOneKnapsackRecursion(weight, profit, remainingWeight, index-1);
+            int profit2 = profit[index] + ZeroOneKnapsackRecursion(weight, profit, remainingWeight - weight[index], index-1);
+            int max = profit1 > profit2 ? profit1 : profit2;
+            return max;
+        }
+    }
+    
+    
+	public static void main(String[] args) {
+		int weight[] = {10, 20, 30, 40};
+		int profit[] = {100, 20, 120, 50};
+		int maxWeight = 40;
+		
+		System.out.println(ZeroOneKnapsackRecursion(weight, profit, maxWeight, weight.length-1));
+	}
+}
+
